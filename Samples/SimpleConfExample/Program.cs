@@ -22,6 +22,7 @@ using Microsoft.Owin.Hosting;
 using System;
 using System.Diagnostics;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace AsterNET.ARI.SimpleConfExample
 {
@@ -39,6 +40,7 @@ namespace AsterNET.ARI.SimpleConfExample
         {
             try
             {
+                var serializer = new JsonSerializer();
                 // Create a message client to receive events on
                 Client = new AriClient(new StasisEndpoint("127.0.0.1", 8088, "username", "test"), AppConfig.AppName);                
 

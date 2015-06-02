@@ -20,7 +20,7 @@
 <#
 // System.Diagnostics.Debugger.Launch();
 var manager = TemplateFileManager.Create(this);
-var filesPath = @"E:\Projects\Github\AsterNET.ARI\ARICodeGen\bin\Debug\Data\";
+var filesPath = @"C:\Source\github-repos\telzio\telzio\lib\asternet-ari\CodeGeneratror\ARICodeGen\bin\Debug\Data\";
 var files = new List<string>() { 
 	filesPath + "Events.json",
 	filesPath + "Bridges.json",
