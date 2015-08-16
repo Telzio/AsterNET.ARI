@@ -1,5 +1,6 @@
 ﻿using System;
 using RestSharp;
+using RestSharp.Authenticators;
 
 namespace AsterNET.ARI.Middleware.Default
 {
