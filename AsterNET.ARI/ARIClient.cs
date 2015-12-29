@@ -153,7 +153,10 @@ namespace AsterNET.ARI
                     catch(Exception ex)
                     {
                         // Handle any exceptions that were thrown by the invoked event handler
-                        Console.WriteLine("An event listener went kaboom! " + ex);
+                        if (!UnhandledException(this, ex))
+                        {
+                            Console.WriteLine("An event listener went kaboom! " + ex);
+                        }
                     }
                 });
             }

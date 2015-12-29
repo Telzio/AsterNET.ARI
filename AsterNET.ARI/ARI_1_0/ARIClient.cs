@@ -42,7 +42,7 @@ namespace AsterNET.ARI
 	public delegate void StasisEndEventHandler(IAriClient sender, StasisEndEvent e);
 	public delegate void StasisStartEventHandler(IAriClient sender, StasisStartEvent e);
 	public delegate void UnhandledEventHandler(object sender, AsterNET.ARI.Models.Event eventMessage);
-
+    public delegate void UnhandledExceptionEventHandler(object sender, Exception exception);
 
 	public interface IAriEventClient
 	{
@@ -80,6 +80,7 @@ namespace AsterNET.ARI
 		event StasisEndEventHandler OnStasisEndEvent;
 		event StasisStartEventHandler OnStasisStartEvent;
 		event UnhandledEventHandler OnUnhandledEvent;
+	    event UnhandledExceptionEventHandler OnUnhandledException;
 	}
 
     public class BaseAriClient
@@ -120,8 +121,19 @@ namespace AsterNET.ARI
         public event TextMessageReceivedEventHandler OnTextMessageReceivedEvent;
         public event ChannelConnectedLineEventHandler OnChannelConnectedLineEvent;
         public event UnhandledEventHandler OnUnhandledEvent;
+        public event UnhandledExceptionEventHandler OnUnhandledException;
+        #endregion
 
-        #endregion  
+        protected bool UnhandledException(object sender, Exception exception)
+        {
+            if (OnUnhandledException != null)
+            {
+                OnUnhandledException(sender, exception);
+                return true;
+            }
+
+            return false;
+        }
 
         protected void FireEvent(string eventName, object eventArgs, IAriClient sender)
         {
